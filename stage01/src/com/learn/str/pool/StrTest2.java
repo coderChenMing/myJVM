@@ -5,7 +5,7 @@ package com.learn.str.pool;
  * File Created at 2022-02-08 11:28:11:28
  * {@link}
  *
- * @author <a href="mailto:chenming1@eversec.cn">chenming</a>
+ * @author <a href="mailto:charmFlightChen@gmail.com">chenming</a>
  * @version 1.0.0
  * @Type StrTest2.java
  * @Desc

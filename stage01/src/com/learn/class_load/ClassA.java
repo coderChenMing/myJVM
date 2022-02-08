@@ -5,7 +5,7 @@ package com.learn.class_load;
  * File Created at 2022-01-24 17:57:17:57
  * {@link}
  *
- * @author <a href="mailto:chenming1@eversec.cn">chenming</a>
+ * @author <a href="mailto:charmFlightChen@gmail.com">chenming</a>
  * @version 1.0.0
  * @Type ClassA.java
  * @Desc

@@ -5,7 +5,7 @@ package com.learn.init;
  * File Created at 2022-01-24 16:19:16:19
  * {@link}
  * 初始化阶段
- * @author <a href="mailto:chenming1@eversec.cn">chenming</a>
+ * @author <a href="mailto:charmFlightChen@gmail.com">chenming</a>
  * @version 1.0.0
  * @Type DemoA.java
  * @Desc

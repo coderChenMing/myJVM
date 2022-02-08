@@ -5,7 +5,7 @@ package com.learn.method.area;
  * File Created at 2022-01-24 15:40:15:40
  * {@link}
  * 类变量有两次赋初始值的过程，一次在准备阶段，赋予初始值（也可以是指定值）；另外一次在初始化阶段，赋予程序员定义的值。
- * @author <a href="mailto:chenming1@eversec.cn">chenming</a>
+ * @author <a href="mailto:charmFlightChen@gmail.com">chenming</a>
  * @version 1.0.0
  * @Type DemoB.java
  * @Desc
