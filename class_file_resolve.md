@@ -131,13 +131,28 @@
 ##8.方法表集合
 ###8.1 方法数量:0x000e:14个方法=13个方法+一个无参构造方法
 
-![descriptor_index](./stage01/class_resolve/method_01.png)
+![方法数量](./stage01/class_resolve/method_01.png)
 使用jclasslib反汇编显示:
-![descriptor_index](./stage01/class_resolve/method_02.png)
+![方法数量](./stage01/class_resolve/method_02.png)
 ###8.2 方法表
 
-![descriptor_index](./stage01/class_resolve/method_access_flag_01.png)
+![方法访问标识](./stage01/class_resolve/method_access_flag_01.png)
 
+access_flag:0x0001 private
+
+![access_flag](./stage01/class_resolve/method_03.png)
+
+name_index:0x0024:36
+
+![name_index](./stage01/class_resolve/method_04.png)
+
+descriptor_index:0x0025:37
+
+![descriptor_index](./stage01/class_resolve/method_05.png)
+
+最终结果 public <init> ()V
+表示这是一个构造方法,()V 表示返回值类型是 void。
+这与我们平常写 java 代码时的语法有点区别,java 代码中构造方法是没有返回值的,想来是因为构造方法都没有返回值,所以让编译器在编译时处理进而方便开发人员,也略微减小了 java 源文件的大小。
 ###8.3 属性表集合
 
 ###8.4 另一个方法
