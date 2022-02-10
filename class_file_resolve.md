@@ -170,6 +170,9 @@ Class文件是一组以8位字节为基础的二进制流，各个数据项目�
 
 ### 8.2 方法表
 方法访问标识说明:
+方法表说明:
+
+![方法访问标识](./stage01/class_resolve/method_list.png)
 
 ![方法访问标识](./stage01/class_resolve/method_access_flag_01.png)
 
@@ -191,7 +194,43 @@ descriptor_index:0x0025:37
 表示这是一个构造方法,()V 表示返回值类型是 void。
 这与我们平常写 java 代码时的语法有点区别,java 代码中构造方法是没有返回值的,想来是因为构造方法都没有返回值,所以让编译器在编译时处理进而方便开发人员,也略微减小了 java 源文件的大小。
 ### 8.3 属性表集合
-
+   在字段表和方法表之后都是属性表信息
+   
+   字段表后的属性表如下:[00 01]表示属性个数,[00 22]指向第34个常量,对于每个属性,它的名称需要从常量池中引用一个 Utf8 类型
+   而属性值的结构是完全自定义的，只需要通过一个 u4 的长度属性来说明属性值所占用的位数即可。这里 [00 00 00 02] 表示，后面 2 个字节[00 23]都是属性值Lcom/learn/MyLinkedList$Node<TE;>;。
+   
+   ![字段表后的属性表](./stage01/class_resolve/attri_01.png)
+   
+   MyLinkedList一共有14个方法,每个方法后都有对应的属性表
+   
+   init方法:
+   
+   ![](./stage01/class_resolve/method_init.png)
+   
+   对应jclasslib反汇编:
+   
+   ![](./stage01/class_resolve/class_lib_init.png)
+ 
+   属性表分析:
+   
+   ![](./stage01/class_resolve/method_init_attri.png)
+   
+   init方法后的属性表:[00 01]表示一个属性,[00 26]指向常量表常量38
+   
+   ![](./stage01/class_resolve/const_38.png)
+   
+   [00 00 00 41]表示后面65个字节都是属性值:
+   
+   ![](./stage01/class_resolve/code_info.png)
+   
+   size方法:
+   
+   ![](stage01/class_resolve/method_size.png)
+   
+   对应jclasslib反汇编:
+      
+   ![](./stage01/class_resolve/class_lib_size.png)
+   
 ### 8.4 另一个方法
 
 ## 9.附加属性集合
