@@ -1,4 +1,31 @@
 # 字节码解析
+java文件通过javac编译后将得到一个.class文件,编译后生成class文件,打开后是一堆十六进制数,按字节为单位进行分割后展示如图所示。
+JVM对于字节码是有规范要求的,规范要求每一个字节码文件都要由十部分按照固定的顺序组成,整体结构如下图所示。
+
+![](./stage01/class_resolve/class_struct.png)
+
+##ClassFile结构:
+Class文件是一组以8位字节为基础的二进制流，各个数据项目按照严格顺序紧凑排列在Class文件中。
+所有的16位，32位，64位长度的数据将被构造成2个，4个，8个字节单位来标示。
+
+![](./stage01/class_resolve/class_file_struct.png)
+
+## class格式说明
+* magic：魔数，魔数的唯一作用是确定这个文件是否为一个能被虚拟机所接受的Class文件。魔数值固定为0xCAFEBABE
+* minor_version、major_version： 分别为Class文件的副版本和主版本
+* constant_pool_count： 常量池计数器，constant_pool_count的值等于constant_pool表中的成员数加1
+* constant_pool[]： 常量池，constant_pool是一种表结构，它包含Class文件结构及其子结构中引用的所有字符串常量、类或接口名、字段名和其它常量。常量池不同于其他，索引从1开始到constant_pool_count -1
+* access_flags： 访问标志，access_flags是一种掩码标志，用于表示某个类或者接口的访问权限及基础属性
+* this_class： 类索引，this_class的值必须是对constant_pool表中项目的一个有效索引值
+* super_class： 父类索引
+* interfaces_count： 接口计数器，interfaces_count的值表示当前类或接口的直接父接口数量
+* interfaces[]： 接口表，interfaces[]数组中的每个成员的值必须是一个对constant_pool表中项目的一个有效索引值，它的长度为interfaces_count
+* fields_count： 字段计数器
+* fields[]： 字段表，fields[]数组中的每个成员都必须是一个fields_info结构的数据项
+* methods_count： 方法计数器
+* methods[]： 方法表，methods[]数组中的每个成员都必须是一个method_info结构的数据项
+* attributes_count： 属性计数器
+* attributes[]： 属性表，attributes表的每个项的值必须是attribute_info结构
 ##1.文件魔数:凡是Java字节码文件前四个字节一定是cafebabe
 
    ![](./stage01/class_resolve/01.png)
@@ -7,7 +34,7 @@
     
    ![](./stage01/class_resolve/03.png)
     
-##2.魔数之后四个字节:class文件次版本号+
+##2.魔数之后四个字节是版本号:class文件次版本号+主版本号
 
    ![此版本号](./stage01/class_resolve/04.png)
    
@@ -37,6 +64,8 @@
    ![常量格式](stage01/class_resolve/const_table.png)
    
    ![常量格式](stage01/class_resolve/const_table_type.png)
+   
+   ![常量格式](stage01/class_resolve/const_table_type_02.png)
     
 ###3.3常量集合
    常量池入口指定了常量池的大小为 136,接下来我们一个个读取这些常量。
@@ -132,11 +161,17 @@
 ###8.1 方法数量:0x000e:14个方法=13个方法+一个无参构造方法
 
 ![方法数量](./stage01/class_resolve/method_01.png)
+
 使用jclasslib反汇编显示:
+
 ![方法数量](./stage01/class_resolve/method_02.png)
+
 ###8.2 方法表
+方法访问标识说明:
 
 ![方法访问标识](./stage01/class_resolve/method_access_flag_01.png)
+
+![方法访问标识](./stage01/class_resolve/method_access_flag_02.png)
 
 access_flag:0x0001 private
 
